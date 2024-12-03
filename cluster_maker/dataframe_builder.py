@@ -9,6 +9,7 @@
 ## Libraries needed
 import pandas as pd
 import numpy as np
+from sklearn.datasets import make_classification
 
 ## Function to define the wanted data structure
 def define_dataframe_structure(column_specs):
@@ -84,3 +85,49 @@ def simulate_data(seed_df, n_points=100, col_specs=None, random_state=None):
             simulated_data.append(simulated_point)
     
     return pd.DataFrame(simulated_data)
+
+
+## Function to simulate non-globular clusters
+def non_globular_cluster(seed_df, n_points=100, col_specs=None, random_state=None):
+    """
+    Simulates non-globular clusters based on the seed data structure.
+
+    Parameters:
+        seed_df (pd.DataFrame): Seed data structure created by define_dataframe_structure().
+        n_points (int): Number of points to simulate.
+        col_specs (dict): Column specifications for the simulation.
+        random_state (int): Random state for reproducibility.
+
+    Returns:
+        pd.DataFrame: DataFrame with simulated non-globular clusters.
+    """
+    n_features = seed_df.shape[1]
+    n_informative = n_features // 2
+    n_redundant = n_features - n_informative
+
+    X, _ = make_classification(
+        n_samples=n_points,
+        n_features=n_features,
+        n_informative=n_informative,
+        n_redundant=n_redundant,
+        n_clusters_per_class=1,
+        random_state=random_state
+    )
+
+    simulated_data = pd.DataFrame(X, columns=seed_df.columns)
+
+    # Adjust the simulated data based on the seed_df representatives
+    for col in seed_df.columns:
+        if col_specs and col in col_specs:
+            dist = col_specs[col].get('distribution', 'normal')
+            variance = col_specs[col].get('variance', 1.0)
+            if dist == 'normal':
+                simulated_data[col] += seed_df[col].mean()
+            elif dist == 'uniform':
+                simulated_data[col] += np.random.uniform(-variance, variance, size=n_points)
+            else:
+                raise ValueError(f"Unsupported distribution: {dist}")
+        else:
+            simulated_data[col] += seed_df[col].mean()
+
+    return simulated_data

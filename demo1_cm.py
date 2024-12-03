@@ -56,3 +56,19 @@ cm.export_to_csv(new_df, "simulated_data.csv", delimiter=",", include_index=Fals
 
 # Example to demonstrate the use of the export_formatted function
 cm.export_formatted(new_df, "simulated_data.txt")
+
+
+
+# Example to demonstrate the use of the non_globular_cluster function
+# Example usage
+seed_df = cm.define_dataframe_structure([
+    {'name': 'x', 'reps': [1, 2, 3]},
+    {'name': 'y', 'reps': [4, 5, 6]}
+])
+col_specs = {
+    'x': {'distribution': 'normal', 'variance': 1.0},
+    'y': {'distribution': 'uniform', 'variance': 2.0}
+}
+n_points = 100
+simulated_df = cm.non_globular_cluster(seed_df, n_points, col_specs, random_state=42)
+print(simulated_df)

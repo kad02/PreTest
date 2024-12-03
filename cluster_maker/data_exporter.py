@@ -30,9 +30,7 @@ def export_to_csv(data, filename, delimiter=",", include_index=False):
 
     return None
 
-## 5) Add to "data_exporter.py" a function called export_formatted()
-##    that exports the data created to a formatted text file. The
-##    formatting should make the file human-readable and informative.
+## Function to export formatted text
 
 def export_formatted(data, filename):
     """
