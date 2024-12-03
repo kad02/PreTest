@@ -12,6 +12,10 @@ import numpy as np
 
 ## Function to define the wanted data structure
 def define_dataframe_structure(column_specs):
+    """
+    Finds the longest column
+    and extends all columns to match that length with NaN values appended to the end.
+    """
     # Prepare data dictionary
     data = {}
     max_length = 0
