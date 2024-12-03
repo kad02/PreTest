@@ -53,3 +53,6 @@ print(new_df)
 
 # Example to demonstrate the use of the export_to_csv function
 cm.export_to_csv(new_df, "simulated_data.csv", delimiter=",", include_index=False)
+
+# Example to demonstrate the use of the export_formatted function
+cm.export_formatted(new_df, "simulated_data.txt")

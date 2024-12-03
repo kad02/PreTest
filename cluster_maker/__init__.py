@@ -10,4 +10,4 @@ from .dataframe_builder import (
     simulate_data
 )
 
-from .data_exporter import export_to_csv
+from .data_exporter import export_to_csv, export_formatted
