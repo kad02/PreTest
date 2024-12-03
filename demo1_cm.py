@@ -50,3 +50,6 @@ col_specs = {
 new_df = cm.simulate_data(seed_df, n_points=10, col_specs=col_specs)
 
 print(new_df)
+
+# Example to demonstrate the use of the export_to_csv function
+cm.export_to_csv(new_df, "simulated_data.csv", delimiter=",", include_index=False)
