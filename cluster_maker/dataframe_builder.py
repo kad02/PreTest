@@ -44,8 +44,8 @@ def simulate_data(seed_df, n_points=100, col_specs=None, random_state=None):
     """
     Simulate data points based on the seed DataFrame.
     Each row of the seed DataFrame has a "distribution" and "variance" specification for each column.
-    "distribution" can be 'normal' or 'uniform'.
-    "variance" is the standard deviation for 'normal' and half the range for 'uniform'.
+    "distribution" can be 'normal' or 'uniform', default is 'normal'.
+    "variance" is the standard deviation for 'normal' and half the range for 'uniform', default is 1.
     Add extra column to the seed DataFrame containing a random sample from the given distribution with the given variance.
 
     Parameters:
