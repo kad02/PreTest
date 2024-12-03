@@ -15,6 +15,12 @@ def define_dataframe_structure(column_specs):
     """
     Finds the longest column
     and extends all columns to match that length with NaN values appended to the end.
+
+    Parameters:
+        column_specs (list of dict): List of dictionaries with column specifications.
+    
+    Returns:
+        pd.DataFrame: DataFrame with extended columns.
     """
     # Prepare data dictionary
     data = {}
@@ -35,6 +41,24 @@ def define_dataframe_structure(column_specs):
 
 ## Function to simulate data
 def simulate_data(seed_df, n_points=100, col_specs=None, random_state=None):
+    """
+    Simulate data points based on the seed DataFrame.
+    Each row of the seed DataFrame has a "distribution" and "variance" specification for each column.
+    "distribution" can be 'normal' or 'uniform'.
+    "variance" is the standard deviation for 'normal' and half the range for 'uniform'.
+    Add extra column to the seed DataFrame containing a random sample from the given distribution with the given variance.
+
+    Parameters:
+        seed_df (pd.DataFrame): The seed DataFrame to simulate data from.
+        n_points (int): Number of points to simulate for each representative point (default: 100).
+        col_specs (dict): Dictionary with column specifications (default: None).
+        random_state (int): Random state for reproducibility (default: None).
+    
+    Returns:   
+        pd.DataFrame: Simulated data points.
+    
+    
+    """
     if random_state is not None:
         np.random.seed(random_state)
     
