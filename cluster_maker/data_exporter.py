@@ -6,6 +6,8 @@
 ## Module data_exporter
 ###
 
+import pandas as pd
+
 ## Function to export to CSV
 def export_to_csv(data, filename, delimiter=",", include_index=False):
     """
@@ -25,3 +27,5 @@ def export_to_csv(data, filename, delimiter=",", include_index=False):
         print(f"Data successfully exported to {filename}")
     except Exception as e:
         print(f"Error exporting data to CSV: {e}")
+
+    return None
