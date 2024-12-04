@@ -18,7 +18,8 @@ def define_dataframe_structure(column_specs):
     and extends all columns to match that length with NaN values appended to the end.
 
     Parameters:
-        column_specs (list of dict): List of dictionaries with column specifications.
+        column_specs (list of dict): List of dictionaries with column specifications
+            Must have two column names: 'name' and 'reps'.
     
     Returns:
         pd.DataFrame: DataFrame with extended columns.
@@ -44,11 +45,13 @@ def define_dataframe_structure(column_specs):
 def simulate_data(seed_df, n_points=100, col_specs=None, random_state=None):
     """
     Simulate data points based on the seed DataFrame.
-    Each row of the seed DataFrame has a "distribution" and "variance" specification for each column.
+    Each column of the col_specs has a "distribution" and "variance" specification.
     "distribution" can be 'normal' or 'uniform', default is 'normal'.
     "variance" is the standard deviation for 'normal' and half the range for 'uniform', default is 1.
-    Add extra column to the seed DataFrame containing a random sample from the given distribution with the given variance.
-
+    Output data frame has same columns as 'names' of seed_df.
+    For each item in col_specs, it adds a random sample from the specified distribution
+    to each point in the seed_df (n_points times).
+    
     Parameters:
         seed_df (pd.DataFrame): The seed DataFrame to simulate data from.
         n_points (int): Number of points to simulate for each representative point (default: 100).
