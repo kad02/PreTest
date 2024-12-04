@@ -73,3 +73,16 @@ col_specs = {
 n_points = 100
 simulated_df = cm.non_globular_cluster(seed_df, n_points, col_specs, random_state=42)
 print(simulated_df)
+
+from matplotlib import pyplot as plt
+from sklearn.cluster import KMeans
+
+kmeans = KMeans(n_clusters=2, random_state=42)
+kmeans.fit(simulated_df)
+
+plt.scatter(simulated_df['x'], simulated_df['y'], c=kmeans.labels_)
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], c='red', s=200, alpha=0.75, marker='X')
+plt.title('K-means Clustering')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.show()
