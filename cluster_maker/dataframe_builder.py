@@ -14,8 +14,8 @@ from sklearn.datasets import make_classification
 ## Function to define the wanted data structure
 def define_dataframe_structure(column_specs):
     """
-    Finds the longest column
-    and extends all columns to match that length with NaN values appended to the end.
+    Finds the longest column from all dictionaries in column_specs
+    and extends all other columns to match that length with NaN values appended to the end.
 
     Parameters:
         column_specs (list of dict): List of dictionaries with column specifications
