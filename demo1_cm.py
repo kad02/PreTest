@@ -86,3 +86,17 @@ plt.title('K-means Clustering')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.show()
+
+
+
+# Clister with DBSCAN instead
+from sklearn.cluster import DBSCAN
+
+dbscan = DBSCAN(eps=0.5, min_samples=5)
+dbscan.fit(simulated_df)
+
+plt.scatter(simulated_df['x'], simulated_df['y'], c=dbscan.labels_)
+plt.title('DBSCAN Clustering')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.show()
