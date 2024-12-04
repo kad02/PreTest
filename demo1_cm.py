@@ -28,12 +28,13 @@ print(df)
 print("\n\n\n")
 
 
-# Example to demonstrate the use of the simulate_data function
-data = {
-    'age': [25, 30, 35],
-    'salary': [50000, 60000, 70000]
-}
-seed_df = pd.DataFrame(data)
+# Example to demonstrate the use of the simulate_data function, using the define_dataframe_structure output as input
+data = [{
+    'name':'age', 'reps': [25, 30, 35]},
+    {'name': 'salary', 'reps': [50000, 60000, 70000]
+}]
+
+seed_df = cm.define_dataframe_structure(data)
 
 # Example col_specs
 col_specs = {
